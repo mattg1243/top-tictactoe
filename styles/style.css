@@ -1,0 +1,31 @@
+body {
+
+    padding: 10px;
+
+}
+
+.flex-centered {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.cell {
+
+    border: 1px solid;
+
+}
+
+#gameboard {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 1px solid;
+    height: 70vh;
+    width: 70vh;
+
+}
