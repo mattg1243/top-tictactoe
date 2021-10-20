@@ -5,6 +5,7 @@ let Gameboard = ( () => {
     // cache DOM
     let $el = $('#gameboard');
     let $cells = $el.find(".cell");
+    let $resetBtn = $('#reset');
     
     // handlers
     const render = () => {
@@ -27,12 +28,16 @@ let Gameboard = ( () => {
         console.log(gameboard);
     }
 
-    // bind events - not currently working as it should; the array of elements isnt working with event binding
+    // bind events
     for (let i = 0; i < 9; i++) {
         $cells[i].addEventListener('click', (e) => {
             makeMove(i, 'X');
         })
     }
+
+    $resetBtn.on('click', (e) => {
+        Gameboard.reset();
+    });
 
     return { render, reset, gameboard, $cells }
 
