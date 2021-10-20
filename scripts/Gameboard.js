@@ -1,18 +1,34 @@
 let Gameboard = (function() {
     
-    let gameboard = ['', '', '', '', '', '', '', '', ''];
+    let gameboard = ['', '', '', '', 'X', '', '', '', ''];
         
     // cache DOM
-    this.$el = $('#gameboard');
-    this.$cells = $(".cell");
+    let $el = $('#gameboard');
+    let $cells = $el.find(".cell");
     
-    // bind events
-    this.$cells.forEach(function (e,) {
-        e.on('click', makeMove)
-    })
+    // handlers
+    const render = () => {
+        $.each($cells, function (index) {
+            $cells[index].textContent = gameboard[index];
+        })
+    }
+    
+    const reset = () => {
+        gameboard = ['', '', '', '', '', '', '', '', ''];
+        render();
+    }
 
     const makeMove = (cell, player) => { 
         gameboard[cell] = player;
+        player.isTurn = false;
+        render();
     }
+
+    // bind events - not currently working as it should; the array of elements isnt working with event binding
+    $.each($cells, function (index) {
+        $cells[index].addEventListener('click', makeMove(index, 'X'))
+    })
+
+    return { render, reset, gameboard, $cells }
 
 })();
