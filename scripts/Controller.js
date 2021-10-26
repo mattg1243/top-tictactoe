@@ -12,7 +12,8 @@ let Controller = (function () {
     
     const gameOver = (winner) => {
         alert(`${winner} wins this time!`)
-        Gameboard.reset();
+        gameboard = []
+        events.emit('winner', winner)
     }
 
     const checkWinner = (gb) => {
