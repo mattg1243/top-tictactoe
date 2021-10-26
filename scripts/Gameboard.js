@@ -47,6 +47,8 @@ let Gameboard = ( () => {
         Gameboard.reset();
     });
 
+    events.on('winner', reset())
+
     return { render, reset, gameboard, $cells }
 
 })();
