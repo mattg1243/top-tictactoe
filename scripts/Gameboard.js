@@ -1,6 +1,7 @@
 let Gameboard = ( () => {
     
-    let gameboard = ['', '', '', '', 'X', 'X', 'X', '', ''];
+    let gameboard = ['', '', '', '', '', '', '', '', ''];
+    let player = 'X';
         
     // cache DOM
     let $el = $('#gameboard');
@@ -14,9 +15,13 @@ let Gameboard = ( () => {
         }
     }
     
+    events.on('nextPlayer', (data) => {
+        player = data;
+    })
+
     const makeMove = (cell, player) => { 
         gameboard[cell] = player;
-        player.isTurn = false;
+        events.emit('moveMade', player)
         render();
     }
 
@@ -31,7 +36,7 @@ let Gameboard = ( () => {
     // bind events
     for (let i = 0; i < 9; i++) {
         $cells[i].addEventListener('click', (e) => {
-            makeMove(i, 'X');
+            makeMove(i, player);
         })
     }
 
