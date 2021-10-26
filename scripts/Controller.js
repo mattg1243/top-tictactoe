@@ -10,22 +10,37 @@ let Controller = (function () {
 
     xPlayer.isTurn = true;
     
+    const gameOver = (winner) => {
+        alert(`${winner} wins this time!`)
+        Gameboard.reset();
+    }
+
+    const checkWinner = (gb) => {
+        // check horizontal winner
+        if (gb[0] == gb[1] == gb[2] || gb[3] == gb[4] == gb[5] || gb[6] == gb[7] == gb[8]) {
+            gameOver(xPlayer.isTurn ? 'X' : 'O')
+        } 
+        // check vertical winner 
+        else if (gb[0] == gb[3] == gb[6] || gb[1] == gb[4] == gb[7] || gb[2] == gb[5] == gb[8]) {
+            gameOver(xPlayer.isTurn ? 'X' : 'O')
+        }
+        // check diagonal winner
+        else if(gb[0] == gb[4] == gb[8] || gb[2] == gb[4] == gb[6]) {
+            gameOver(xPlayer.isTurn ? 'X' : 'O')
+        }
+        // check for cats game
+        else if (turnsCounter == 9) {
+            gameOver(xPlayer.isTurn ? 'X' : 'O')
+        }
+    }
+
     events.on('moveMade', () => {
         
         turnsCounter++;
-        if(turnsCounter > 6) {
-        for (let i = 0; i < 9; i++) {
-            if (gb[i] == gb[i + 3] && gb[i + 3] == gb[i + 6] && gb[i] != '' || 
-                gb[i] == gb[i + 1] && gb[i + 1] == gb[i + 2] && gb[i] != '' ||  
-                gb[i] == gb[i + 4] && gb[i + 4] == gb[i + 8] && gb[i] != '' ||
-                gb[i + 2] == gb[i + 4] && gb[i + 4] == gb[i + 8]) {
-                    events.emit('winner', xPlayer.isTurn ? 'X': 'O')
-                    let winner = gb[i]
-                    alert(`${winner} wins this time!`)
-                    Gameboard.reset();
-                }
-            }
-        }
+
+        if (turnsCounter > 4) {
+        checkWinner(gb);
+       }
 
         if (xPlayer.isTurn) {
             xPlayer.isTurn = false;
@@ -40,6 +55,6 @@ let Controller = (function () {
 
     const test = () => console.log('hello from Controller module')
 
-    return { $resetBtn, test }
+    return { $resetBtn, test,  }
 
 })();

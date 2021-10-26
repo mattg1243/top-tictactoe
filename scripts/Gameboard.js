@@ -1,6 +1,6 @@
 let Gameboard = ( () => {
     
-    let gameboard = ['', '', '', '', '', '', '', '', ''];
+    let gameboard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     let player = 'X';
         
     // cache DOM
@@ -11,7 +11,9 @@ let Gameboard = ( () => {
     // handlers
     const render = () => {
         for (let i = 0; i < 9; i++) {
-            $cells[i].textContent = gameboard[i];
+            if (gameboard[i] == 'O' || gameboard[i] == 'X') {
+                $cells[i].textContent = gameboard[i];
+            }
         }
     }
     
@@ -27,7 +29,7 @@ let Gameboard = ( () => {
 
     const reset = () => {
         for (let i = 0; i < 9; i++) {
-            makeMove(i, '');
+            makeMove(i, i);
         }
         render();
         console.log(gameboard);
@@ -36,6 +38,7 @@ let Gameboard = ( () => {
     // bind events
     for (let i = 0; i < 9; i++) {
         $cells[i].addEventListener('click', (e) => {
+            e.target.active = true;
             makeMove(i, player);
         })
     }
