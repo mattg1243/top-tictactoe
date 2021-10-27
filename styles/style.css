@@ -16,6 +16,8 @@ body {
 .cell {
 
     border: 1px solid;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 3em;
 
 }
 
@@ -24,8 +26,9 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    border: 1px solid;
+    border-color: white;
     height: 70vh;
     width: 70vh;
+    margin: 2em;
 
 }
