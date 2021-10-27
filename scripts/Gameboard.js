@@ -6,7 +6,6 @@ let Gameboard = ( () => {
     // cache DOM
     let $el = $('#gameboard');
     let $cells = $el.find(".cell");
-    let $resetBtn = $('#reset');
     
     // handlers
     const render = () => {
@@ -40,6 +39,7 @@ let Gameboard = ( () => {
         })
     }
 
-    return { render, reset, gameboard, $cells }
+    // need to find a way to avoid revealing gameboard 
+    return { render, reset, gameboard }
 
 })();

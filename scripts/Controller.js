@@ -61,6 +61,4 @@ let Controller = (function () {
 
     const test = () => console.log('hello from Controller module')
 
-    return { $resetBtn, test, checkWinner }
-
 })();
