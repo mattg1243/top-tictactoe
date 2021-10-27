@@ -31,7 +31,7 @@ let Controller = (function () {
         }
         // check for cats game
         else if (turnsCounter == 9) {
-            gameOver(xPlayer.isTurn ? 'X' : 'O')
+            gameOver('No body')
         }
     }
 
@@ -53,6 +53,10 @@ let Controller = (function () {
             oPlayer.isTurn = false;
             events.emit('nextPlayer', 'X')
         }
+    })
+
+    $resetBtn.on('click', () => {
+        Gameboard.reset()
     })
 
     const test = () => console.log('hello from Controller module')
