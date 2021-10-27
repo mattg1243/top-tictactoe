@@ -12,8 +12,6 @@ let Controller = (function () {
     
     const gameOver = (winner) => {
         alert(`${winner} wins this time!`)
-        gameboard = []
-        events.emit('winner', winner)
     }
 
     const checkWinner = (gb) => {
@@ -35,20 +33,21 @@ let Controller = (function () {
         }
     }
 
-    events.on('moveMade', () => {
+    events.on('moveMade', (player) => {
         
         gameboard = Gameboard.gameboard;
+        Gameboard.render();
         turnsCounter++;
 
         if (turnsCounter > 4) {
         checkWinner(gameboard);
        }
 
-        if (xPlayer.isTurn) {
+        if (player == 'X') {
             xPlayer.isTurn = false;
             oPlayer.isTurn = true;
             events.emit('nextPlayer', 'O')
-        } else if (oPlayer.isTurn) {
+        } else if (player == 'O') {
             xPlayer.isTurn = true;
             oPlayer.isTurn = false;
             events.emit('nextPlayer', 'X')
@@ -56,7 +55,8 @@ let Controller = (function () {
     })
 
     $resetBtn.on('click', () => {
-        Gameboard.reset()
+        Gameboard.reset();
+        turnsCounter = 0;
     })
 
     const test = () => console.log('hello from Controller module')

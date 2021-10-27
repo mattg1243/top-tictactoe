@@ -23,14 +23,11 @@ let Gameboard = ( () => {
 
     const makeMove = (cell, player) => { 
         gameboard[cell] = player;
-        render();
         events.emit('moveMade', player)
     }
 
     const reset = () => {
-        for (let i = 0; i < 9; i++) {
-            makeMove(i, i);
-        }
+        gameboard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         render();
         console.log(gameboard);
     }
@@ -42,9 +39,6 @@ let Gameboard = ( () => {
             makeMove(i, player);
         })
     }
-
-    events.on('reset', reset())
-    events.on('winner', reset())
 
     return { render, reset, gameboard, $cells }
 
