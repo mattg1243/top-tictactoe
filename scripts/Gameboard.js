@@ -12,8 +12,8 @@ let Gameboard = ( () => {
     const render = () => {
         for (let i = 0; i < 9; i++) {
             if (gameboard[i] == 'O' || gameboard[i] == 'X') {
-                $cells[i].textContent = gameboard[i];
-            }
+                $cells[i].textContent = gameboard[i]
+            } else {$cells[i].textContent = ''}
         }
     }
     
@@ -23,8 +23,8 @@ let Gameboard = ( () => {
 
     const makeMove = (cell, player) => { 
         gameboard[cell] = player;
-        events.emit('moveMade', player)
         render();
+        events.emit('moveMade', player)
     }
 
     const reset = () => {
@@ -43,10 +43,7 @@ let Gameboard = ( () => {
         })
     }
 
-    $resetBtn.on('click', (e) => {
-        Gameboard.reset();
-    });
-
+    events.on('reset', reset())
     events.on('winner', reset())
 
     return { render, reset, gameboard, $cells }
