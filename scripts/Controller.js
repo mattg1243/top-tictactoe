@@ -6,7 +6,7 @@ let Controller = (function () {
     let $gameOverText = $('#gameOverText');
     let $tryAgainBtn = $('#tryAgain')
 
-
+    // initialize game
     let xPlayer = Player('X');
     let oPlayer = Player('O');
     let gameboard = Gameboard.gameboard;
@@ -14,6 +14,7 @@ let Controller = (function () {
 
     xPlayer.isTurn = true;
     
+    // methods
     const gameOver = (winner) => {
         $gameOverModal.modal('show');
         $gameOverText.text(`${winner} wins this time!`);
@@ -38,6 +39,7 @@ let Controller = (function () {
         }
     }
 
+    // bindings
     events.on('moveMade', (player) => {
         
         gameboard = Gameboard.gameboard;
@@ -59,6 +61,7 @@ let Controller = (function () {
         }
     })
 
+    // event listeners
     $resetBtn.on('click', () => {
         Gameboard.reset();
         turnsCounter = 0;
@@ -69,7 +72,5 @@ let Controller = (function () {
         turnsCounter = 0;
         $gameOverModal.modal('hide');
     })
-
-    const test = () => console.log('hello from Controller module')
 
 })();
