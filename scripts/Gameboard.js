@@ -21,8 +21,13 @@ let Gameboard = ( () => {
     })
 
     const makeMove = (cell, player) => { 
-        gameboard[cell] = player;
-        events.emit('moveMade', player)
+        if (gameboard[cell] == 'X' || gameboard[cell] == 'O') {
+            alert("Please choose a spot that is not already taken")
+        }
+        else {
+            gameboard[cell] = player;
+            events.emit('moveMade', player)
+        }
     }
 
     const reset = () => {
