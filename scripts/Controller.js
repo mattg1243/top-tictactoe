@@ -2,6 +2,10 @@ let Controller = (function () {
      
     // cache DOM
     let $resetBtn = $('#reset');
+    let $gameOverModal = $('#gameOverModal');
+    let $gameOverText = $('#gameOverText');
+    let $tryAgainBtn = $('#tryAgain')
+
 
     let xPlayer = Player('X');
     let oPlayer = Player('O');
@@ -11,7 +15,8 @@ let Controller = (function () {
     xPlayer.isTurn = true;
     
     const gameOver = (winner) => {
-        alert(`${winner} wins this time!`)
+        $gameOverModal.modal('show');
+        $gameOverText.text(`${winner} wins this time!`);
     }
 
     const checkWinner = (gb) => {
@@ -57,6 +62,12 @@ let Controller = (function () {
     $resetBtn.on('click', () => {
         Gameboard.reset();
         turnsCounter = 0;
+    })
+
+    $tryAgainBtn.on('click', () => {
+        Gameboard.reset();
+        turnsCounter = 0;
+        $gameOverModal.modal('hide');
     })
 
     const test = () => console.log('hello from Controller module')

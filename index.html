@@ -16,6 +16,7 @@
     <!-- Custom Styling -->
     <link rel="stylesheet" href="./styles/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js " defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js" defer></script>
     <script src="./scripts/events.js" defer></script>
     <script src="./scripts/Player.js" defer></script>
     <script src="./scripts/Gameboard.js" defer></script>
@@ -36,7 +37,33 @@
             <div class="cell flex-centered" value=7></div>
             <div class="cell flex-centered" value=8></div>
         </div>
-        <button class="btn btn-primary" id="reset">Reset</button>
+        <button class="btn btn-primary" id="reset" data-mdb-toggle="modal" data-mdb-target="#gameOverModal">Reset</button>
+
+        <div
+  class="modal fade"
+  id="gameOverModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Game Over</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body flex-centered" id="gameOverText"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="tryAgain">Try Again</button>
+      </div>
+    </div>
+  </div>
+</div>
     </main>
 </body>
 </html>
